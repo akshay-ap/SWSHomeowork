@@ -1,0 +1,14 @@
+Dump of assembler code for function blub:
+0x08048374 <blub+0>:    push   %ebp
+0x08048375 <blub+1>:    mov    %esp,%ebp
+0x08048377 <blub+3>:    sub    $0x18,%esp
+0x0804837a <blub+6>:    movl   $0x17,-0x4(%ebp)
+0x08048381 <blub+13>:   mov    -0x4(%ebp),%eax
+0x08048384 <blub+16>:   sub    $0xf,%eax
+0x08048387 <blub+19>:   mov    %eax,-0x8(%ebp)
+0x0804838a <blub+22>:   mov    -0x8(%ebp),%eax
+0x0804838d <blub+25>:   mov    %eax,0x4(%esp)
+0x08048391 <blub+29>:   movl   $0x8048490,(%esp)
+0x08048398 <blub+36>:   call   0x80482d8 <printf@plt>
+0x0804839d <blub+41>:   leave
+0x0804839e <blub+42>:   ret
