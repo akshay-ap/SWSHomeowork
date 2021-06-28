@@ -29,3 +29,10 @@ Solution:
 Input string:
 
 ' UNION ALL SELECT nick,password_plaintext  FROM community_users3; --
+
+
+Problem 3:
+
+Problem 4:
+
+http://localhost:8081/?data=}-alert(42)-{
