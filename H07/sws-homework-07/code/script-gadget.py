@@ -76,6 +76,8 @@ class MyHandler(BaseHTTPRequestHandler):
         else:
             data = 'classes'
             
+        print("data", data)
+        print("escaped", escape(data))
         output = main_doc.format(data=escape(data))
         self.wfile.write(bytes(output, 'UTF-8'))
 

