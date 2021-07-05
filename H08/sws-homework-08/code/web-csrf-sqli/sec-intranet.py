@@ -11,6 +11,9 @@ except ImportError:
              'This script only works with Python 3!')
 import sqlite3
 from reset_database import reset_database
+from cgi import parse_header, parse_multipart
+from random import randint
+import datetime
 
 DATABASE_FILE = 'website.sqlite3'
 
@@ -143,9 +146,16 @@ class MyHandler(MyHandler):
     <a href='/'>Return to home</a>
     <table>{rows}</table>
     Never store passwords in plain text as we do in this example!
-    <form method='post'>
+    <form method='post' action="/admin/reset">
     <input type="submit" value="RESET DATABASE" />
     </form>
+
+    <form method='post' action="/admin/add">
+    <input type="text" id="user_name" name="user_name" placeholder="name">
+    <input type="text"  id="user_password" name="user_password" placeholder="password">
+    <input type="submit" value="ADD USER" />
+    </form>
+
     <style>
     table {{ border: 1px solid black; border-collapse: collapse; }}
     th, td {{ border: 1px solid black; padding: 3px; }}
@@ -183,10 +193,35 @@ class MyHandler(MyHandler):
         self.send_response_headers_and_body(self.admin_doc.format(rows=rows))
 
     def do_POST(self):
-        if self.path != '/admin':
+        print("Path:", self.path)
+        if self.path == "/admin/add":
+
+            length = int(self.headers['content-length'])
+            postvars = parse_qs(self.rfile.read(length), keep_blank_values=1)
+
+            form_data = { key.decode(): val[0].decode() for key, val in postvars.items() }
+
+            name = form_data.get('user_name')
+            password = form_data.get('user_password')
+
+            print(f"New user: {name}/{password}")
+
+            connection = sqlite3.connect(DATABASE_FILE)
+            date_str = datetime.datetime.today().strftime('%Y-%m-%d')
+            sql = f"INSERT INTO users VALUES ({randint(100,200)}, '{name}', '{password}', '{date_str}', 'user')"
+            print (f"Executing SQL: {sql}")
+            res = connection.execute(sql)
+            connection.commit()
+            print("res:", res)
+            self.redirect('/admin')
+
+        elif self.path == "/admin/reset":
+            print("Reset database")
+            reset_database()
+            self.redirect('/admin')
+        else:
             return super().do_POST()
-        reset_database()
-        self.redirect('/admin')
+
         
 
         
